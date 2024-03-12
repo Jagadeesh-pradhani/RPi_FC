@@ -11,14 +11,13 @@
     https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-05-28/
 
 ### ROS Noetic setup
-
-    1. Update and Upgrade 
+1. Update and Upgrade 
         ```
         sudo apt update
         sudo apt upgrade
         ```
         
-    2. Increase swap file if low RAM RPi is used 
+2. Increase swap file if low RAM RPi is used 
         ```
         sudo dphys-swapfile swapoff
         sudo nano/etc/dphys-swapfile
