@@ -8,7 +8,7 @@
 ## Installation
 
 ### Debian OS
-    https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-05-28/
+https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-05-28/
 
 ### ROS Noetic setup
 1. Update and Upgrade 
