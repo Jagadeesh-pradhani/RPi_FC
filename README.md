@@ -12,18 +12,18 @@
 
 ### ROS Noetic setup
 1. Update and Upgrade 
-        ```
-        sudo apt update
-        sudo apt upgrade
-        ```
+    ```
+    sudo apt update
+    sudo apt upgrade
+    ```
         
 2. Increase swap file if low RAM RPi is used 
-        ```
-        sudo dphys-swapfile swapoff
-        sudo nano/etc/dphys-swapfile
-        ```
-        Inside the file change the 'CONF_SWAPSIZE' to desired value. (around 2GB).
-        ```
-        sudo dphys-swapfile setup
-        sudo dphys-swapfile swapon
-        ```
+    ```
+    sudo dphys-swapfile swapoff
+    sudo nano/etc/dphys-swapfile
+    ```
+    Inside the file change the 'CONF_SWAPSIZE' to desired value. (around 2GB).
+    ```
+    sudo dphys-swapfile setup
+    sudo dphys-swapfile swapon
+    ```
