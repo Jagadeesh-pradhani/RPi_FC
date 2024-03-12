@@ -36,8 +36,54 @@
    ```
    cat /etc/apt/sources.list.d/ros-latest.list
    ```
-   output should be as folows ```deb http://packages.ros.org/ros/ubuntu buster main```
+   output should be as folows ```deb http://packages.ros.org/ros/ubuntu buster main``` <br>
+   Set keys
+   ```
+   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+   ```
+   Update
+   ```
+   sudo apt update
+   ```
+   Install rosdep
+   ```
+   sudo apt-get install -y python-rosdep python-rosinstall-generator python-wstool python-rosinstall build-essential cmake
+   ```
+   Initialize and update
+   ```
+   sudo rosdep init
+   rosdep update
+   ```
+   Create a workspace for ROS
+   ```
+   mkdir catkin_ws
+   cd catkin_ws
+   ```
+   Install ROS
+   ```
+   rosinstall_generator desktop --rosdistro noetic --deps --wet-only --tar > noetic-desktop-wet.rosinstall
+   ```
+   ```
+   wstool init src noetic-desktop-wet.rosinstall
+   ```
+   ```
+   rosdep install -y --from-paths src --ignore-src --rosdistro noetic -r --os=debian:buster
+   ```
+   Install and Build all packages (This may take hours based on RPi configuration)
+   ```
+   sudo src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILDTYPE=Release --install-space /opt/ros/noetic -j2 -DPYTHON_EXECUTABLE=/usr/bin/python3
+   ```
+4. Source the ROS files
+   ```
+   echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+   source ~/.bashrc
    ```
    
-   ```
+
+
+
+
+
+
+
 
