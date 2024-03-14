@@ -1,10 +1,8 @@
-'''
-        Read Gyro and Accelerometer by Interfacing Raspberry Pi with MPU6050 using Python
-	http://www.electronicwings.com
-'''
+#!/usr/bin/env python3
+
 import smbus			#import SMBus module of I2C
 import rospy
-from std_msgs.msg import MPUData
+from sensor_msgs.msg import Imu
 from time import sleep
 
 #some MPU6050 Registers and their Address
@@ -56,7 +54,7 @@ Device_Address = 0x68   # MPU6050 device address
 
 MPU_Init()
 rospy.init_node("mpu_node")
-mpu_pub = rospy.Publisher('/mpu_data', MPUData, queue_size=10)
+mpu_pub = rospy.Publisher('/mpu_data', Imu, queue_size=10)
 
 print (" Reading Data of Gyroscope and Accelerometer")
 
@@ -83,17 +81,17 @@ while 1:
         
 
         print ("Gx=%.2f" %Gx, u'\u00b0'+ "/s", "\tGy=%.2f" %Gy, u'\u00b0'+ "/s", "\tGz=%.2f" %Gz, u'\u00b0'+ "/s", "\tAx=%.2f g" %Ax, "\tAy=%.2f g" %Ay, "\tAz=%.2f g" %Az) 	
-        # Create MPUData message instance
-        mpu_data = MPUData()
-        mpu_data.Ax = Ax
-        mpu_data.Ay = Ay
-        mpu_data.Az = Az
-        mpu_data.Gx = Gx
-        mpu_data.Gy = Gy
-        mpu_data.Gz = Gz
+        # Create Imu message instance
+        imu_data = Imu()
+        imu_data.linear_acceleration.x = Ax
+        imu_data.linear_acceleration.y = Ay
+        imu_data.linear_acceleration.z = Az
+        imu_data.angular_velocity.x = Gx
+        imu_data.angular_velocity.y = Gy
+        imu_data.angular_velocity.z = Gz
 
         # Publish MPU data
-        mpu_pub.publish(mpu_data)
+        mpu_pub.publish(imu_data)
         
         sleep(1)
         
